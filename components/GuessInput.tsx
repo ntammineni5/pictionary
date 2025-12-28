@@ -1,0 +1,70 @@
+'use client';
+
+import { useState } from 'react';
+
+interface GuessInputProps {
+  onGuess: (guess: string) => void;
+  disabled: boolean;
+}
+
+interface GuessMessage {
+  text: string;
+  isCorrect: boolean;
+  timestamp: number;
+}
+
+export default function GuessInput({ onGuess, disabled }: GuessInputProps) {
+  const [guess, setGuess] = useState('');
+  const [messages, setMessages] = useState<GuessMessage[]>([]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!guess.trim() || disabled) return;
+
+    onGuess(guess.trim());
+    setGuess('');
+  };
+
+  const addMessage = (text: string, isCorrect: boolean) => {
+    setMessages((prev) => [...prev, { text, isCorrect, timestamp: Date.now() }]);
+  };
+
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-4 flex flex-col h-full">
+      <h2 className="text-xl font-bold text-gray-800 mb-4">Guesses</h2>
+
+      <div className="flex-1 overflow-y-auto mb-4 space-y-2 min-h-[200px]">
+        {messages.map((msg, index) => (
+          <div
+            key={index}
+            className={`p-2 rounded-lg ${
+              msg.isCorrect
+                ? 'bg-green-100 text-green-800'
+                : 'bg-gray-100 text-gray-700'
+            }`}
+          >
+            {msg.text}
+          </div>
+        ))}
+      </div>
+
+      <form onSubmit={handleSubmit} className="flex gap-2">
+        <input
+          type="text"
+          value={guess}
+          onChange={(e) => setGuess(e.target.value)}
+          disabled={disabled}
+          placeholder={disabled ? "Wait for your turn..." : "Type your guess..."}
+          className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-primary-500 focus:outline-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+        />
+        <button
+          type="submit"
+          disabled={disabled || !guess.trim()}
+          className="px-6 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors font-medium"
+        >
+          Guess
+        </button>
+      </form>
+    </div>
+  );
+}

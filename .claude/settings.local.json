@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod:*)",
+      "Skill(webapp-testing)",
+      "Bash(uv run python:*)",
+      "Bash(uv pip install:*)",
+      "Bash(uv run:*)",
+      "Bash(uv venv:*)",
+      "Bash(source .venv/bin/activate)",
+      "Bash(playwright install:*)",
+      "Skill(systematic-debugging)",
+      "Bash(make dev:*)",
+      "Bash(curl:*)",
+      "Bash(lsof:*)"
+    ]
+  }
+}
