@@ -12,7 +12,8 @@
       "Skill(systematic-debugging)",
       "Bash(make dev:*)",
       "Bash(curl:*)",
-      "Bash(lsof:*)"
+      "Bash(lsof:*)",
+      "Bash(git add:*)"
     ]
   }
 }

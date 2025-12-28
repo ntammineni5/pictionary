@@ -49,11 +49,11 @@ export default function CorrectGuessers({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl dark:shadow-gray-900/50 max-w-md w-full p-8">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-center">
           {manualMode ? 'Stop Round & Award Points' : 'Players Guessed Correctly!'}
         </h2>
-        <p className="text-gray-600 text-center mb-6">
+        <p className="text-gray-600 dark:text-gray-300 text-center mb-6">
           {manualMode
             ? 'Select which players guessed correctly, then award points.'
             : 'Select which players guessed correctly and then stop the timer.'}
@@ -66,14 +66,14 @@ export default function CorrectGuessers({
               onClick={() => toggleSelection(guesser.playerId)}
               className={`w-full p-4 rounded-lg border-2 transition-all ${
                 selected.has(guesser.playerId)
-                  ? 'border-green-500 bg-green-50'
-                  : 'border-gray-300 bg-white'
+                  ? 'border-green-500 bg-green-50 dark:bg-green-900'
+                  : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="font-semibold text-gray-800">{guesser.playerName}</span>
+                <span className="font-semibold text-gray-800 dark:text-gray-100">{guesser.playerName}</span>
                 {selected.has(guesser.playerId) && (
-                  <span className="text-green-500 text-xl">✓</span>
+                  <span className="text-green-500 dark:text-green-400 text-xl">✓</span>
                 )}
               </div>
             </button>
@@ -83,7 +83,7 @@ export default function CorrectGuessers({
         <button
           onClick={handleSubmit}
           disabled={selected.size === 0}
-          className="w-full px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors font-semibold text-lg"
+          className="w-full px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors font-semibold text-lg"
         >
           Stop Timer & Award Points
         </button>

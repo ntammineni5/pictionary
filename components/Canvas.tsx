@@ -130,17 +130,17 @@ export default function Canvas({ strokes, canDraw, onStroke, onClear }: CanvasPr
   return (
     <div className="flex flex-col gap-4">
       {canDraw && (
-        <div className="bg-white rounded-lg shadow-lg p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-900/50 p-4">
           <div className="flex items-center gap-4 flex-wrap">
             <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-gray-700">Color:</span>
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Color:</span>
               <div className="flex gap-2">
                 {colors.map((color) => (
                   <button
                     key={color}
                     onClick={() => setCurrentColor(color)}
                     className={`w-8 h-8 rounded-full border-2 transition-all ${
-                      currentColor === color ? 'border-primary-500 scale-110' : 'border-gray-300'
+                      currentColor === color ? 'border-primary-500 scale-110' : 'border-gray-300 dark:border-gray-600'
                     }`}
                     style={{ backgroundColor: color }}
                   />
@@ -149,7 +149,7 @@ export default function Canvas({ strokes, canDraw, onStroke, onClear }: CanvasPr
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-gray-700">Width:</span>
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Width:</span>
               <div className="flex gap-2">
                 {widths.map((width) => (
                   <button
@@ -157,12 +157,12 @@ export default function Canvas({ strokes, canDraw, onStroke, onClear }: CanvasPr
                     onClick={() => setCurrentWidth(width)}
                     className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${
                       currentWidth === width
-                        ? 'border-primary-500 bg-primary-50'
-                        : 'border-gray-300 bg-white'
+                        ? 'border-primary-500 bg-primary-50 dark:bg-primary-900'
+                        : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
                     }`}
                   >
                     <div
-                      className="rounded-full bg-gray-700"
+                      className="rounded-full bg-gray-700 dark:bg-gray-300"
                       style={{ width: `${width * 2}px`, height: `${width * 2}px` }}
                     />
                   </button>
@@ -180,7 +180,7 @@ export default function Canvas({ strokes, canDraw, onStroke, onClear }: CanvasPr
         </div>
       )}
 
-      <div className="bg-white rounded-lg shadow-xl overflow-hidden">
+      <div className="bg-white rounded-lg shadow-xl dark:shadow-gray-900/50 overflow-hidden">
         <canvas
           ref={canvasRef}
           width={800}
@@ -189,7 +189,7 @@ export default function Canvas({ strokes, canDraw, onStroke, onClear }: CanvasPr
           onMouseMove={draw}
           onMouseUp={stopDrawing}
           onMouseLeave={stopDrawing}
-          className={`w-full border-4 ${canDraw ? 'border-primary-500 cursor-crosshair' : 'border-gray-300 cursor-not-allowed'}`}
+          className={`w-full border-4 ${canDraw ? 'border-primary-500 cursor-crosshair' : 'border-gray-300 dark:border-gray-600 cursor-not-allowed'}`}
           style={{ touchAction: 'none' }}
         />
       </div>

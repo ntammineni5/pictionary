@@ -211,12 +211,12 @@ export default function RoomPage() {
   // Show name prompt modal if needed (before loading check)
   if (showNamePrompt) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl dark:shadow-gray-900/50 max-w-md w-full p-8">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-center">
             Welcome to the Room!
           </h2>
-          <p className="text-gray-600 text-center mb-6">
+          <p className="text-gray-600 dark:text-gray-300 text-center mb-6">
             Please enter your name to join the game.
           </p>
           <form onSubmit={handleNameSubmit} className="space-y-4">
@@ -225,7 +225,7 @@ export default function RoomPage() {
               value={nameInput}
               onChange={(e) => setNameInput(e.target.value)}
               placeholder="Enter your name"
-              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-500 focus:outline-none text-center text-lg"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:border-primary-500 focus:outline-none text-center text-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
               autoFocus
               required
             />
@@ -243,24 +243,24 @@ export default function RoomPage() {
 
   if (!room) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-primary-500 mx-auto mb-4"></div>
-          <p className="text-xl text-gray-600">Loading room...</p>
+          <p className="text-xl text-gray-600 dark:text-gray-300">Loading room...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen p-4">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-lg p-4 mb-4">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-900/50 p-4 mb-4">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">{room.name}</h1>
-              <p className="text-sm text-gray-600">
+              <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">{room.name}</h1>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Room ID: {roomId} · {room.type === 'private' ? 'Private' : 'Public'} Room
               </p>
             </div>
@@ -285,16 +285,16 @@ export default function RoomPage() {
 
         {/* Waiting Lobby */}
         {room.gameState === 'waiting' && (
-          <div className="bg-white rounded-lg shadow-lg p-8 text-center">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Waiting for players...</h2>
-            <p className="text-gray-600 mb-6">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-900/50 p-8 text-center">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Waiting for players...</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
               {room.players.length} player{room.players.length !== 1 ? 's' : ''} in room
             </p>
             <div className="flex flex-wrap gap-2 justify-center mb-6">
               {room.players.map((player) => (
                 <div
                   key={player.id}
-                  className="px-4 py-2 bg-primary-100 text-primary-800 rounded-full font-medium"
+                  className="px-4 py-2 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 rounded-full font-medium"
                 >
                   {player.name} {player.isHost && '(Host)'}
                 </div>
@@ -309,7 +309,7 @@ export default function RoomPage() {
               </button>
             )}
             {room.players.length < 2 && (
-              <p className="text-gray-500">Need at least 2 players to start</p>
+              <p className="text-gray-500 dark:text-gray-400">Need at least 2 players to start</p>
             )}
           </div>
         )}
@@ -329,28 +329,28 @@ export default function RoomPage() {
             {/* Main Canvas Area */}
             <div className="lg:col-span-2 space-y-4">
               {/* Game Status */}
-              <div className="bg-white rounded-lg shadow-lg p-4">
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-900/50 p-4">
                 <div className="flex items-center justify-between">
                   <div>
                     {isDrawer && room.gameState === 'drawing' && currentWord && (
                       <div>
-                        <span className="text-sm text-gray-600">Your word:</span>
-                        <span className="ml-2 text-2xl font-bold text-primary-600">{currentWord}</span>
+                        <span className="text-sm text-gray-600 dark:text-gray-400">Your word:</span>
+                        <span className="ml-2 text-2xl font-bold text-primary-500 dark:text-primary-400">{currentWord}</span>
                       </div>
                     )}
                     {!isDrawer && room.gameState === 'drawing' && (
-                      <div className="text-lg font-semibold text-gray-700">
+                      <div className="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         {room.players.find((p) => p.id === room.currentDrawer)?.name} is drawing...
                       </div>
                     )}
                     {room.gameState === 'word-selection' && (
-                      <div className="text-lg font-semibold text-gray-700">
+                      <div className="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         {isDrawer ? 'Choose your word...' : 'Waiting for drawer to choose a word...'}
                       </div>
                     )}
                     {room.gameState === 'round-end' && roundEndData && (
-                      <div className="text-lg font-semibold text-gray-700">
-                        The word was: <span className="text-primary-600">{roundEndData.word}</span>
+                      <div className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                        The word was: <span className="text-primary-500 dark:text-primary-400">{roundEndData.word}</span>
                       </div>
                     )}
                   </div>
@@ -400,13 +400,13 @@ export default function RoomPage() {
         {/* Game End */}
         {gameEndData && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-8">
-              <h2 className="text-4xl font-bold text-center mb-8">Game Over!</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl dark:shadow-gray-900/50 max-w-2xl w-full p-8">
+              <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-100 mb-8">Game Over!</h2>
 
               <div className="mb-8">
                 <div className="text-center mb-4">
-                  <span className="text-2xl font-semibold text-gray-700">Winner:</span>
-                  <span className="ml-2 text-3xl font-bold text-primary-600">
+                  <span className="text-2xl font-semibold text-gray-700 dark:text-gray-300">Winner:</span>
+                  <span className="ml-2 text-3xl font-bold text-primary-500 dark:text-primary-400">
                     {room.players.find((p) => p.id === gameEndData.winner)?.name || 'Unknown'}
                   </span>
                 </div>
@@ -419,15 +419,15 @@ export default function RoomPage() {
                         key={player.id}
                         className={`flex items-center justify-between p-4 rounded-lg ${
                           player.id === gameEndData.winner
-                            ? 'bg-yellow-100 border-2 border-yellow-500'
-                            : 'bg-gray-100'
+                            ? 'bg-yellow-100 dark:bg-yellow-900 border-2 border-yellow-500'
+                            : 'bg-gray-100 dark:bg-gray-700'
                         }`}
                       >
                         <div className="flex items-center gap-3">
-                          <span className="text-2xl font-bold text-gray-500">#{index + 1}</span>
-                          <span className="text-xl font-semibold">{player.name}</span>
+                          <span className="text-2xl font-bold text-gray-500 dark:text-gray-400">#{index + 1}</span>
+                          <span className="text-xl font-semibold text-gray-800 dark:text-gray-100">{player.name}</span>
                         </div>
-                        <span className="text-2xl font-bold text-primary-600">
+                        <span className="text-2xl font-bold text-primary-500 dark:text-primary-400">
                           {gameEndData.finalScores[player.id] || 0}
                         </span>
                       </div>

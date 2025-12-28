@@ -100,16 +100,16 @@ export default function Home() {
 
   if (view === 'home') {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
         <div className="max-w-md w-full">
           <div className="text-center mb-8">
-            <h1 className="text-6xl font-bold text-primary-600 mb-2">Pictionary</h1>
-            <p className="text-xl text-gray-600">Draw, Guess, and Win!</p>
+            <h1 className="text-6xl font-bold text-primary-500 dark:text-primary-400 mb-2">Pictionary</h1>
+            <p className="text-xl text-gray-600 dark:text-gray-400">Draw, Guess, and Win!</p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-2xl p-8 space-y-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl dark:shadow-gray-900/50 p-8 space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Your Name
               </label>
               <input
@@ -117,12 +117,12 @@ export default function Home() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your name"
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-500 focus:outline-none"
+                className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:border-primary-500 focus:outline-none bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
               />
             </div>
 
             {error && (
-              <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+              <div className="p-3 bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-200 rounded-lg">
                 {error}
               </div>
             )}
@@ -158,21 +158,21 @@ export default function Home() {
 
   if (view === 'create') {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
         <div className="max-w-md w-full">
           <button
             onClick={() => setView('home')}
-            className="mb-4 text-primary-600 hover:text-primary-700 font-medium"
+            className="mb-4 text-primary-500 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium"
           >
             ← Back
           </button>
 
-          <div className="bg-white rounded-2xl shadow-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Create Room</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl dark:shadow-gray-900/50 p-8">
+            <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Create Room</h2>
 
             <form onSubmit={handleCreateRoom} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Room Name
                 </label>
                 <input
@@ -180,13 +180,13 @@ export default function Home() {
                   value={roomName}
                   onChange={(e) => setRoomName(e.target.value)}
                   placeholder="Enter room name"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-500 focus:outline-none"
+                  className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:border-primary-500 focus:outline-none bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Room Type
                 </label>
                 <div className="grid grid-cols-2 gap-4">
@@ -195,24 +195,24 @@ export default function Home() {
                     onClick={() => setRoomType('public')}
                     className={`p-4 rounded-lg border-2 transition-all ${
                       roomType === 'public'
-                        ? 'border-primary-500 bg-primary-50'
-                        : 'border-gray-300 bg-white'
+                        ? 'border-primary-500 bg-primary-50 dark:bg-primary-900'
+                        : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
                     }`}
                   >
-                    <div className="font-semibold">Public</div>
-                    <div className="text-sm text-gray-600">Anyone can join</div>
+                    <div className="font-semibold dark:text-gray-100">Public</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Anyone can join</div>
                   </button>
                   <button
                     type="button"
                     onClick={() => setRoomType('private')}
                     className={`p-4 rounded-lg border-2 transition-all ${
                       roomType === 'private'
-                        ? 'border-primary-500 bg-primary-50'
-                        : 'border-gray-300 bg-white'
+                        ? 'border-primary-500 bg-primary-50 dark:bg-primary-900'
+                        : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
                     }`}
                   >
-                    <div className="font-semibold">Private</div>
-                    <div className="text-sm text-gray-600">Invite only</div>
+                    <div className="font-semibold dark:text-gray-100">Private</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Invite only</div>
                   </button>
                 </div>
               </div>
@@ -232,21 +232,21 @@ export default function Home() {
 
   if (view === 'join') {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
         <div className="max-w-md w-full">
           <button
             onClick={() => setView('home')}
-            className="mb-4 text-primary-600 hover:text-primary-700 font-medium"
+            className="mb-4 text-primary-500 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium"
           >
             ← Back
           </button>
 
-          <div className="bg-white rounded-2xl shadow-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Join Private Room</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl dark:shadow-gray-900/50 p-8">
+            <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Join Private Room</h2>
 
             <form onSubmit={handleJoinRoom} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Room ID
                 </label>
                 <input
@@ -254,7 +254,7 @@ export default function Home() {
                   value={joinRoomId}
                   onChange={(e) => setJoinRoomId(e.target.value)}
                   placeholder="Enter room ID"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-500 focus:outline-none"
+                  className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:border-primary-500 focus:outline-none bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                   required
                 />
               </div>
@@ -274,20 +274,20 @@ export default function Home() {
 
   if (view === 'public') {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
         <div className="max-w-2xl w-full">
           <button
             onClick={() => setView('home')}
-            className="mb-4 text-primary-600 hover:text-primary-700 font-medium"
+            className="mb-4 text-primary-500 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium"
           >
             ← Back
           </button>
 
-          <div className="bg-white rounded-2xl shadow-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Public Rooms</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl dark:shadow-gray-900/50 p-8">
+            <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Public Rooms</h2>
 
             {publicRooms.length === 0 ? (
-              <div className="text-center py-12 text-gray-500">
+              <div className="text-center py-12 text-gray-500 dark:text-gray-400">
                 <p className="text-lg">No public rooms available</p>
                 <p className="mt-2">Create a new room to get started!</p>
               </div>
@@ -296,11 +296,11 @@ export default function Home() {
                 {publicRooms.map((room) => (
                   <div
                     key={room.id}
-                    className="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg hover:border-primary-500 transition-all"
+                    className="flex items-center justify-between p-4 border-2 border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary-500 transition-all"
                   >
                     <div>
-                      <div className="font-semibold text-lg">{room.name}</div>
-                      <div className="text-sm text-gray-600">
+                      <div className="font-semibold text-lg dark:text-gray-100">{room.name}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
                         {room.playerCount} players · {room.gameState}
                       </div>
                     </div>
